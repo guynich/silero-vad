@@ -46,6 +46,8 @@ generate the below plot.
 cd
 source ./venv_silero-vad/bin/activate
 
+cd silero-vad
+
 python3 main.py
 ```
 
