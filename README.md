@@ -55,10 +55,11 @@ The first audio file `jfk.wav` has speech content (blue solid line).  It is an
 historical recording of a speech by President John F Kennedy with some
 background noise.
 
-The Silero VAD model detects the speech correctly.  The second run with
-"priming" (red dots) has higher probability values for the same audio file
-than without priming (green dash dotted line).  The reason for this increase in
-values is not understood but could be related to the background noise.
+The Silero VAD model detects the speech but the probability values are sometimes 
+low.  The second run with "priming" (red dots) has higher probability values for 
+the same audio file than without priming (green dash dotted line).  The reason for 
+this increase in values is not understood but could be related to the background 
+noise.
 
 <img src="images/jfk.png" alt="Sound detection for jfk.wav"/>
 
@@ -67,7 +68,7 @@ See https://github.com/snakers4/silero-vad/issues/637.
 The second audio file `harvard_sentences.wav` has speech content (blue solid
 line).  It is a recording of male speech with little background noise.
 
-The Silero VAD model detects the speech correctly and zero priming has no
-observable impact on speech detection.
+The Silero VAD model detects the speech correctly and zero priming of the model has no
+significant impact on speech detection.
 
 <img src="images/harvard_sentences.png" alt="Sound detection for harvard_sentences.wav"/>
