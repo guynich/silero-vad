@@ -35,9 +35,9 @@ def main():
     audio_x_ticks = np.linspace(0.0, len(audio) / rate, len(audio))
 
     plt.figure()
+    plt.plot(audio_x_ticks, audio, "b", label="audio")
     plt.plot(x_ticks, speech_probs, "g-.", label="no priming")
     plt.plot(x_ticks, speech_probs_zero_primed, "r:", label="zero primed")
-    plt.plot(audio_x_ticks, audio, "b", label="audio")
     plt.ylim([-1.1, 1.1])
     plt.grid()
     plt.legend(loc="lower right")
