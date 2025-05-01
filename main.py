@@ -16,33 +16,35 @@ def process_audio_chunks(audio, speech_detector):
 
 
 def main():
-    audio, rate = sf.read("./audio/jfk.wav")
-    speech_detector = SpeechDetector(rate=rate)
+    for filename in ["jfk.wav", "harvard_sentences.wav"]:
+        print(f"Processing {filename}...")
+        audio, rate = sf.read(f"./audio/{filename}")
+        speech_detector = SpeechDetector(rate=rate)
 
-    # Get speech probabilities without priming
-    speech_detector.reset()
-    speech_probs = process_audio_chunks(audio, speech_detector)
+        # Get speech probabilities without priming
+        speech_detector.reset()
+        speech_probs = process_audio_chunks(audio, speech_detector)
 
-    # Get speech probabilities with one second of zero "priming"
-    speech_detector.reset()
-    for _ in range(rate // speech_detector.chunk_size):
-        speech_detector(np.zeros(speech_detector.chunk_size))
-    speech_probs_zero_primed = process_audio_chunks(audio, speech_detector)
+        # Get speech probabilities with one second of zero "priming"
+        speech_detector.reset()
+        for _ in range(rate // speech_detector.chunk_size):
+            speech_detector(np.zeros(speech_detector.chunk_size))
+        speech_probs_zero_primed = process_audio_chunks(audio, speech_detector)
 
-    # Plotting
-    time_step = speech_detector.chunk_size / rate
-    x_ticks = np.linspace(0.0, len(speech_probs) * time_step, len(speech_probs))
-    audio_x_ticks = np.linspace(0.0, len(audio) / rate, len(audio))
+        # Plotting
+        time_step = speech_detector.chunk_size / rate
+        x_ticks = np.linspace(0.0, len(speech_probs) * time_step, len(speech_probs))
+        audio_x_ticks = np.linspace(0.0, len(audio) / rate, len(audio))
 
-    plt.figure()
-    plt.plot(audio_x_ticks, audio, "b", label="audio")
-    plt.plot(x_ticks, speech_probs, "g-.", label="no priming")
-    plt.plot(x_ticks, speech_probs_zero_primed, "r:", label="zero primed")
-    plt.ylim([-1.1, 1.1])
-    plt.grid()
-    plt.legend(loc="lower right")
-    plt.title("jfk.wav audio: speech detected probability.")
-    plt.show()
+        plt.figure()
+        plt.plot(audio_x_ticks, audio, "b", label="audio")
+        plt.plot(x_ticks, speech_probs, "g-.", label="no priming")
+        plt.plot(x_ticks, speech_probs_zero_primed, "r:", label="zero primed")
+        plt.ylim([-1.1, 1.1])
+        plt.grid()
+        plt.legend(loc="lower right")
+        plt.title(f"{filename} audio: speech detected probability.")
+        plt.show()
 
 
 if __name__ == "__main__":
