@@ -57,4 +57,4 @@ The Silero VAD model detects the speech correctly.  The second run with
 than without priming (green dash dotted line).  The reason for this increase in
 values is not understood.
 
-<img src="images/effect_of_zero_priming.png" alt="Sound detection for jfk.wav"  width="500"/>
+<img src="images/effect_of_zero_priming.png" alt="Sound detection for jfk.wav"/>
