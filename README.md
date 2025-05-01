@@ -7,7 +7,7 @@ In this repo a test script uses the Silero VAD model to compute the probability
 of speech in an audio file.  A second run resets the model and then "primes" the
 model with some zero valued input before computing the probability of speech for
 the same audio file - this additional "priming" step unexpectedly increases
-the values of the predicted probability of speech.
+the values of the predicted probability of speech for the included file.
 
 # Installation
 
@@ -52,7 +52,7 @@ python3 main.py
 ```
 
 The audio file has speech content (blue solid line).  It is a recording of a
-speech by President John F Kennedy.
+speech by President John F Kennedy with some background noise.
 
 The Silero VAD model detects the speech correctly.  The second run with
 "priming" (red dots) has higher probability values for the same audio file
